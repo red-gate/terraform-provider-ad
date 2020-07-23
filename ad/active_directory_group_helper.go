@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	ldap "gopkg.in/ldap.v3"
+	ldap "github.com/go-ldap/ldap/v3"
 )
 
 func addGroupToAD(groupName string, dnName string, adConn *ldap.Conn, desc string, gidNumber string) error {

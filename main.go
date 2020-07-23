@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/GSLabDev/terraform-provider-ad/ad"
+	"github.com/red-gate/terraform-provider-ad/ad"
 	"github.com/hashicorp/terraform/plugin"
 )
 

@@ -1,6 +1,6 @@
 package ad
 
-import ldap "gopkg.in/ldap.v3"
+import ldap "github.com/go-ldap/ldap/v3"
 
 func addToGroup(groupToAddName string, targetGroupName string, adConn *ldap.Conn) error {
 	modifyRequest := ldap.NewModifyRequest(targetGroupName, nil)

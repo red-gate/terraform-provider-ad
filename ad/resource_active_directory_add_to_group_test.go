@@ -8,7 +8,7 @@ import (
 
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	ldap "gopkg.in/ldap.v3"
+	ldap "github.com/go-ldap/ldap/v3"
 )
 
 func TestAccAddToGroup_Basic(t *testing.T) {
@@ -118,7 +118,7 @@ provider "ad" {
   ip       = "%s"
   url      = "%s"
   user     = "%s"
-  password = "%s"  
+  password = "%s"
 }
 
 resource "ad_group_to_ou" "test" {

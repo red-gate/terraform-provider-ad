@@ -7,7 +7,7 @@ import (
 
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"gopkg.in/ldap.v3"
+	"github.com/go-ldap/ldap/v3"
 )
 
 func TestAccAdComputerToOU_Basic(t *testing.T) {
@@ -112,7 +112,7 @@ provider "ad" {
 	ip       = "%s"
 	url      = "%s"
   user     = "%s"
-  password = "%s"  
+  password = "%s"
 }
 
 resource "ad_computer_to_ou" "test" {

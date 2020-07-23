@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"time"
 
-	ldap "gopkg.in/ldap.v3"
+	ldap "github.com/go-ldap/ldap/v3"
 
 	"github.com/hashicorp/terraform/helper/schema"
 )
