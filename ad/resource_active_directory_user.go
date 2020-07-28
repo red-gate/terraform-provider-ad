@@ -163,11 +163,21 @@ func addUser(userName string, dnName string, adConn *ldap.Conn, upn string, last
 	a.Attribute("name", []string{userName})
 	a.Attribute("sn", []string{lastName})
 	a.Attribute("userPassword", []string{pass})
+	a.Attribute("pwdLastSet", []string{"-1"})
 
 	err := adConn.Add(a)
 	if err != nil {
 		return err
 	}
+
+	modReq := ldap.NewModifyRequest(dnName, nil)
+	modReq.Replace("userAccountControl", []string{"66080"}) // PASSWD_NOTREQD|NORMAL_ACCOUNT|DONT_EXPIRE_PASSWORD
+
+	err = adConn.Modify(modReq)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
