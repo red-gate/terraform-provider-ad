@@ -170,10 +170,8 @@ func resourceADUserDelete(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("[ERROR] Cannot find user")
 	}
 	client := m.(*ldap.Conn)
-	firstName := d.Get("first_name").(string)
-	lastName := d.Get("last_name").(string)
 	domain := d.Get("domain").(string)
-	userName := firstName + " " + lastName
+	userName := d.Get("logon_name").(string)
 	var dnOfUser string
 	dnOfUser += "CN=" + userName + ",CN=Users"
 	domainArr := strings.Split(domain, ".")
@@ -182,7 +180,7 @@ func resourceADUserDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	log.Printf("[DEBUG] dnOfUser: %s ", dnOfUser)
 	log.Printf("[DEBUG] deleting user : %s ", userName)
-	err := delUser(userName, dnOfUser, client)
+	err := delUser(dnOfUser, client)
 	if err != nil {
 		log.Printf("[ERROR] Error in deletion :%s", err)
 		return fmt.Errorf("[ERROR] Error in deletion :%s", err)
@@ -222,7 +220,7 @@ func addUser(userName string, dnName string, adConn *ldap.Conn, upn string, firs
 
 //Helper function to delete user:
 
-func delUser(userName string, dnName string, adConn *ldap.Conn) error {
+func delUser(dnName string, adConn *ldap.Conn) error {
 	delReq := ldap.NewDelRequest(dnName, nil)
 	err := adConn.Del(delReq)
 	if err != nil {
