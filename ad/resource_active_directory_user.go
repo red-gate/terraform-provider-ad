@@ -113,7 +113,7 @@ func resourceADUserRead(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error while searching  user : %s", err)
 	}
 
-	fmt.Println("[ERROR] Found " + strconv.Itoa(len(sr.Entries)) + " Entries")
+	fmt.Println("[TRACE] Found " + strconv.Itoa(len(sr.Entries)) + " Entries")
 	if len(sr.Entries) == 0 {
 		log.Println("[ERROR] user not found")
 		d.SetId("")

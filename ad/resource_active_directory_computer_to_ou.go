@@ -83,7 +83,7 @@ func resourceADComputerToOURead(d *schema.ResourceData, meta interface{}) error 
 		log.Printf("[ERROR] Error while searching a Computer : %s ", err)
 		return fmt.Errorf("Error while searching a Computer : %s", err)
 	}
-	fmt.Println("[ERROR] Found " + strconv.Itoa(len(sr.Entries)) + " Entries")
+	fmt.Println("[TRACE] Found " + strconv.Itoa(len(sr.Entries)) + " Entries")
 	for _, entry := range sr.Entries {
 		fmt.Printf("%s: %v\n", entry.DN, entry.GetAttributeValue("cn"))
 	}
