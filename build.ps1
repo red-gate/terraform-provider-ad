@@ -45,8 +45,10 @@ try {
         /bin/sh -c "go test -short -v ./ad"
 
 } finally {
+    if($VerbosePreference -ne 'SilentlyContinue') {
+        docker logs test-ldap-server
+    }
     "Stopping openldap container"
-    docker logs test-ldap-server
     docker rm test-ldap-server --force
     "Removing terraform-provider-ad_test_network network"
     docker network rm terraform-provider-ad_test_network
