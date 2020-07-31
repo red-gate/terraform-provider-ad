@@ -1,0 +1,11 @@
+dn: cn=Users,dc=example,dc=org
+objectClass: top
+objectClass: group
+cn: Users
+groupType: 2147483650
+
+dn: cn=Computers,dc=example,dc=org
+objectClass: top
+objectClass: group
+cn: Computers
+groupType: 2147483650
