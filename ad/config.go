@@ -19,7 +19,7 @@ type Config struct {
 func (c *Config) Client() (*ldap.Conn, error) {
 	var username string
 	var url string
-	username = c.Username + "@" + c.Domain
+	username = c.Username
 
 	// stay downwards compatible
 	switch {

@@ -6,15 +6,16 @@ import (
 	"strings"
 	"testing"
 
+	ldap "github.com/go-ldap/ldap/v3"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	ldap "github.com/go-ldap/ldap/v3"
 )
 
 func TestAccAddToGroup_Basic(t *testing.T) {
 	var groupDN string = os.Getenv("AD_GROUP_OU_DISTINGUISHED_NAME")
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
+			testAccPreCheckShort(t)
 			testAccPreCheck(t)
 			testAccResourceAddToGroupPreCheck(t)
 		},

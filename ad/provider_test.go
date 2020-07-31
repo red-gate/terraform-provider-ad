@@ -47,3 +47,9 @@ func testAccPreCheck(t *testing.T) {
 		t.Fatal("AD_PASSWORD must be set for acceptance tests")
 	}
 }
+
+func testAccPreCheckShort(t *testing.T) {
+	if testing.Short() {
+		t.Skip("skipped test in short mode")
+	}
+}

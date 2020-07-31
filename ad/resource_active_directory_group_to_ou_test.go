@@ -5,9 +5,9 @@ import (
 	"os"
 	"testing"
 
+	"github.com/go-ldap/ldap/v3"
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
-	"github.com/go-ldap/ldap/v3"
 )
 
 func TestAccAdGroupToOU_Basic(t *testing.T) {
@@ -34,6 +34,7 @@ func TestAccAdGroupToOU_Basic(t *testing.T) {
 
 	resource.Test(t, resource.TestCase{
 		PreCheck: func() {
+			testAccPreCheckShort(t)
 			testAccPreCheck(t)
 			testAccResourceAdGroupToOUPreCheck(t)
 		},
@@ -162,14 +163,14 @@ provider "ad" {
 }
 
 resource "ad_group_to_ou" "static_gid" {
-  ou_distinguished_name = "%s"
+  ou_distinguished_name = "%[6]s"
   group_name = "terraform9000"
   description = "terraform test"
   gid_number = "9000"
 }
 
 resource "ad_group_to_ou" "test" {
-  ou_distinguished_name = "%[5]s"
+  ou_distinguished_name = "%[6]s"
   group_name = "terraform9001"
   description = "terraform test"
   auto_gid = true
